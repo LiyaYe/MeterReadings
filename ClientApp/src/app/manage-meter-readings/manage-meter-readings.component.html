@@ -1,0 +1,10 @@
+<h1> Meter Readings Manager </h1>
+
+<div class="accountImporter">
+  <input type="file" file-browser (change)="setMeterReadingsFile($event.target.files)">
+  <button (click)="importCsv()">Import</button>
+</div>
+
+<app-meter-readings-list
+  [meterReadings]="meterReadings">
+</app-meter-readings-list>

@@ -1,0 +1,168 @@
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using MeterReadings.Data.Contexts;
+using MeterReadings.Models.Interfaces;
+using MeterReadings.Models;
+
+namespace MeterReadings.Controllers
+{
+    public class CustomerAccountsController : Controller
+    {
+        private readonly MeterReadingsContext _context;
+
+        public CustomerAccountsController(MeterReadingsContext context)
+        {
+            _context = context;
+        }
+
+        // GET: CustomerAccounts
+        public async Task<IActionResult> Index()
+        {
+            return View(await _context.CustomerAccount.ToListAsync());
+        }
+
+        public IEnumerable<ICustomerAccount> GetAll()
+        {
+            return _context.CustomerAccount.ToList();
+        }
+
+        // GET: CustomerAccounts/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var customerAccount = await _context.CustomerAccount
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (customerAccount == null)
+            {
+                return NotFound();
+            }
+
+            return View(customerAccount);
+        }
+
+        // POST: CustomerAccounts/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("AccountId,FirstName,LastName")] ICustomerAccount customerAccount)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(customerAccount);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(customerAccount);
+        }
+
+        // Creates several Customer Account Entries
+        [HttpPost]
+        public int Import([FromBody] CustomerAccount[] customerAccounts)
+        {
+            if (ModelState.IsValid)
+            {
+                foreach (var customerAccount in customerAccounts)
+                {
+                    _context.Add(customerAccount);
+                }
+
+                return _context.SaveChanges();
+            }
+
+            return -1;
+        }
+
+        // GET: CustomerAccounts/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var customerAccount = await _context.CustomerAccount.FindAsync(id);
+            if (customerAccount == null)
+            {
+                return NotFound();
+            }
+            return View(customerAccount);
+        }
+
+        // POST: CustomerAccounts/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,AccountId,FirstName,LastName")] ICustomerAccount customerAccount)
+        {
+            if (id != customerAccount.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(customerAccount);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!CustomerAccountExists(customerAccount.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(customerAccount);
+        }
+
+        // GET: CustomerAccounts/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var customerAccount = await _context.CustomerAccount
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (customerAccount == null)
+            {
+                return NotFound();
+            }
+
+            return View(customerAccount);
+        }
+
+        // POST: CustomerAccounts/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var customerAccount = await _context.CustomerAccount.FindAsync(id);
+            _context.CustomerAccount.Remove(customerAccount);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool CustomerAccountExists(int id)
+        {
+            return _context.CustomerAccount.Any(e => e.Id == id);
+        }
+    }
+}
