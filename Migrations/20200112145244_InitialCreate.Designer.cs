@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MeterReadings.Migrations
 {
     [DbContext(typeof(MeterReadingsContext))]
-    [Migration("20200112130435_addKeys")]
-    partial class addKeys
+    [Migration("20200112145244_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -37,6 +37,9 @@ namespace MeterReadings.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AccountId")
+                        .IsUnique();
+
                     b.ToTable("CustomerAccounts");
                 });
 
@@ -52,8 +55,9 @@ namespace MeterReadings.Migrations
                     b.Property<DateTime>("MeterReadDateTime")
                         .HasColumnType("TEXT");
 
-                    b.Property<uint>("MeterReadValue")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("MeterReadValue")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 

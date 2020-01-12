@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using MeterReadings.Models;
 using MeterReadings.Data.EntityModels;
 
 namespace MeterReadings.Data.Contexts

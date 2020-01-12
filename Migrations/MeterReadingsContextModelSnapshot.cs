@@ -53,8 +53,9 @@ namespace MeterReadings.Migrations
                     b.Property<DateTime>("MeterReadDateTime")
                         .HasColumnType("TEXT");
 
-                    b.Property<uint>("MeterReadValue")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("MeterReadValue")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 

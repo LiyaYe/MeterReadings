@@ -14,7 +14,7 @@ namespace MeterReadings.Data.EntityModels
         [Required]
         public DateTime MeterReadDateTime { get; set; }
         [Required]
-        public UInt32 MeterReadValue { get; set; }
+        public string MeterReadValue { get; set; }
         public CustomerAccountEntity CustomerAccount { get; set; }
     }
 }

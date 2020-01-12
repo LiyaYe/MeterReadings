@@ -17,7 +17,7 @@ namespace MeterReadings.Models
         public DateTime MeterReadDateTime { get; set; }
         [Required(ErrorMessage = "Please provide a MeterReadValue")]
         [Display(Name = "meterReadValue")]
-        public UInt32 MeterReadValue { get; set; }
+        public string MeterReadValue { get; set; }
         [JsonIgnore]
         public ICustomerAccount CustomerAccount { get; set; }
     }

@@ -47,7 +47,7 @@ export class MeterReadingImportComponent implements OnInit {
 
       const meterReading: IMeterReading = {
         accountId: Number(currentLine[0]),
-        meterReadDateTime: moment(currentLine[1], 'DD/MM/YYYY').toDate(),
+        meterReadDateTime: moment(currentLine[1], 'DD/MM/YYYY HH:mm').toDate(),
         meterReadValue: this.meterReadingsHelper.getFormattedMeterReadValue(currentLine[2]),
       };
 

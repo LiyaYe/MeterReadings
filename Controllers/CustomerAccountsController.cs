@@ -7,6 +7,7 @@ using MeterReadings.Data.Contexts;
 using MeterReadings.Models.Interfaces;
 using MeterReadings.Models;
 using MeterReadings.Data.EntityModels;
+using MeterReadings.Extensions.DbContext;
 
 namespace MeterReadings.Controllers
 {
@@ -68,14 +69,20 @@ namespace MeterReadings.Controllers
         [HttpPost]
         public int Import([FromBody] CustomerAccountEntity[] customerAccounts)
         {
+            var successfulEntries = 0;
+
             if (ModelState.IsValid)
             {
                 foreach (var customerAccount in customerAccounts)
                 {
-                    _context.Add(customerAccount);
+                    if (_context.CustomerAccounts.AddIfNotExists(customerAccount, ca => ca.AccountId == customerAccount.AccountId)) {
+                        successfulEntries++;
+                    }
                 }
 
-                return _context.SaveChanges();
+                _context.SaveChanges();
+
+                return successfulEntries;
             }
 
             return -1;

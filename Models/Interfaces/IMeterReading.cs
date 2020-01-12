@@ -9,6 +9,6 @@ namespace MeterReadings.Models.Interfaces
         Int32 Id { get; set; }
         Int32 AccountId { get; set; }
         DateTime MeterReadDateTime { get; set; }
-        UInt32 MeterReadValue { get; set; }
+        string MeterReadValue { get; set; }
     }
 }

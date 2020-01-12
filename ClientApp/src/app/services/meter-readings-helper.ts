@@ -22,18 +22,17 @@ export class MeterReadingsHelper {
     return errors;
   }
 
-  public getFormattedMeterReadValue(meterReadValue: string): number {
+  public getFormattedMeterReadValue(meterReadValue: string): string {
     const trimmedMeterReadValue = meterReadValue ? meterReadValue.replace(/[\n\r]+/g, '') : meterReadValue;
 
     if (!trimmedMeterReadValue
-      || typeof trimmedMeterReadValue !== 'string'
-      || Number.isNaN(Number(trimmedMeterReadValue))
+      || !this.meterReadValueIsNumber(trimmedMeterReadValue)
       || !this.meterReadValuePositive(trimmedMeterReadValue)
       || !this.validMeterReadValueLength(trimmedMeterReadValue)) {
         return null;
     }
 
-    return Number(trimmedMeterReadValue);
+    return trimmedMeterReadValue.padStart(5, '0');
   }
 
   private validMeterReadValueLength(meterReadValue: string): boolean {
@@ -42,5 +41,11 @@ export class MeterReadingsHelper {
 
   private meterReadValuePositive(meterReadValue: string): boolean {
     return Number(meterReadValue) > -1;
+  }
+
+  private meterReadValueIsNumber(meterReadValue: string): boolean {
+    const regexp = new RegExp('^[0-9]+$');
+
+    return regexp.test(meterReadValue);
   }
 }
