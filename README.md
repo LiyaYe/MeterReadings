@@ -25,10 +25,10 @@ Open `localhost:5001` on a browser, which should display a simple navigation men
 2. Ability to view all meter readings
 
 ## TODO
-[ ] Add unit tests
-[ ] Add Search functionality instead of loading all
-[ ] Improve the UI to display Stats
-[ ] Separate data from controller using repositories
-[ ] Create response objects and use in controllers
-[ ] Fix dates to take into account time zone
-[ ] Display validation errors for import
+- [ ] Add unit tests
+- [ ] Add Search functionality instead of loading all
+- [ ] Improve the UI to display Stats
+- [ ] Separate data from controller using repositories
+- [ ] Create response objects and use in controllers
+- [ ] Fix dates to take into account time zone
+- [ ] Display validation errors for import
