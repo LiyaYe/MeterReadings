@@ -7,9 +7,13 @@ import { MeterReadingsHelper } from '../services/meter-readings-helper';
 @Component({
   selector: 'app-meter-reading-import',
   templateUrl: './meter-reading-import.component.html',
-  styleUrls: ['./meter-reading-import.component.css']
+  styleUrls: ['./meter-reading-import.component.scss']
 })
 export class MeterReadingImportComponent implements OnInit {
+
+  public successImportCount: number;
+  public importCount: number;
+  public showSpinner: boolean;
 
   private meterReadingsFile: File;
 
@@ -24,13 +28,19 @@ export class MeterReadingImportComponent implements OnInit {
   }
 
   public importCsv() {
+    this.showSpinner = true;
+
     const reader = new FileReader();
 
     reader.onload = () => {
-      const meterReadingsText = reader.result.toString();
-      const jsonResult = this.csvToJSON(meterReadingsText);
+      const meterReadingsFile = reader.result.toString();
+      const jsonResult = this.csvToJSON(meterReadingsFile);
+
+      this.importCount = meterReadingsFile.split('\n').length - 1;
+
       this.meterReadingsService.import(jsonResult).subscribe(result => {
-        console.log(result);
+        this.successImportCount = result;
+        this.showSpinner = false;
       });
     };
 

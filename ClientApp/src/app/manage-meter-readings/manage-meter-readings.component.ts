@@ -9,9 +9,7 @@ import { IMeterReading } from '../models/meter-reading.interface';
 })
 export class ManageMeterReadingsComponent implements OnInit {
 
-  private meterReadings: IMeterReading[];
-
-  public showMeterReadings: boolean;
+  public meterReadings: IMeterReading[];
 
   constructor(private meterReadingsService: MeterReadingsService) { }
 

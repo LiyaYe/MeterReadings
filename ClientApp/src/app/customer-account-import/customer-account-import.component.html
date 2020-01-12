@@ -1,9 +1,20 @@
 <mat-toolbar>
     <mat-toolbar-row>
-        <div>
+        <div class="bulk-import-bar">
             <span>Bulk import: </span>
             <input type="file" file-browser (change)="setCustomerAccountsFile($event.target.files)">
             <button mat-button (click)="importCsv()">IMPORT</button>
+            <div class="count-wrapper" *ngIf="importCount">
+                <p>
+                    {{ successImportCount }}
+                    <mat-icon class="text-success">check</mat-icon>
+                </p>
+                <p>
+                    {{ importCount - successImportCount }}
+                    <mat-icon class="text-danger">close</mat-icon>
+                </p>
+            </div>
+            <mat-spinner *ngIf="showSpinner"></mat-spinner>
         </div>
     </mat-toolbar-row>
 </mat-toolbar>
