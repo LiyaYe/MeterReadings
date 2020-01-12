@@ -17,9 +17,9 @@ Open `localhost:5001` on a browser, which should display a simple navigation men
 ## Features
 
 ### Customer Accounts
-Ability to import accounts via CSV
-Ability to view all accounts
+i. Ability to import accounts via CSV
+ii. Ability to view all accounts
 
 ### Meter Readings
-Ability to import meter readings via CSV
-Ability to view all meter readings
+i. Ability to import meter readings via CSV
+ii. Ability to view all meter readings
