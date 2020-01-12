@@ -13,7 +13,8 @@ Execute the following instructions on Visual Studio Code Terminal:
 npm install
 cd ..
 dotnet build
-dotnet run```
+dotnet run
+```
 
 Alternatively, build and execute on Visual Studio.
 
