@@ -1,10 +1,12 @@
 # MeterReadings
  
 ## Project tech stack
-ASP .Net Core 3.1 with Angular
-SQLite
-Entity Framework
-
+* ASP .Net Core 3.1 with Angular
+* SQLite
+* Entity Framework
+* SCSS
+* Bootstrap
+* Angular Material Design
 ## How to run
 Execute the following instructions on Visual Studio Code:
 `dotnet build`
