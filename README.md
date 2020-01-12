@@ -8,7 +8,10 @@
 * Bootstrap
 * Angular Material Design
 ## How to run
-Execute the following instructions on Visual Studio Code:
+Execute the following instructions on Visual Studio Code Terminal:
+`cd ClientApp`
+`npm install`
+`cd ..`
 `dotnet build`
 `dotnet run`
 
