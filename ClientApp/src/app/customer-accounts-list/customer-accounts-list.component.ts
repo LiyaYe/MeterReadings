@@ -10,15 +10,10 @@ export class CustomerAccountsListComponent implements OnInit {
 
   @Input() customerAccounts: ICustomerAccount[];
 
-  private showCustomerAccounts: boolean;
+  public columnNames: string[] = ['accountId', 'firstName', 'lastName'];
 
   constructor() { }
 
   ngOnInit() {
   }
-
-  public toggleCustomerAccountsList(): void {
-    this.showCustomerAccounts = !this.showCustomerAccounts;
-  }
-
 }

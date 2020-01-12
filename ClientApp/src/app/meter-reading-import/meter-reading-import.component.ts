@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { IMeterReading } from '../models/meter-reading.interface';
 import * as moment from 'moment';
 import { MeterReadingsService } from '../services/meter-readings-service';
@@ -16,6 +16,8 @@ export class MeterReadingImportComponent implements OnInit {
   public showSpinner: boolean;
 
   private meterReadingsFile: File;
+
+  @Output() refresh = new EventEmitter ();
 
   constructor(private meterReadingsService: MeterReadingsService,
     private meterReadingsHelper: MeterReadingsHelper) { }
@@ -41,6 +43,7 @@ export class MeterReadingImportComponent implements OnInit {
       this.meterReadingsService.import(jsonResult).subscribe(result => {
         this.successImportCount = result;
         this.showSpinner = false;
+        this.refresh.emit();
       });
     };
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { CustomerAccountsService } from '../services/customer-accounts-service';
 import { CustomerAccountHeper } from '../services/customer-account-helper';
 import { ICustomerAccount } from '../models/customer-account.interface';
@@ -15,6 +15,8 @@ export class CustomerAccountImportComponent implements OnInit {
   public showSpinner: boolean;
 
   private customerAccountsFile: File;
+
+  @Output() refresh = new EventEmitter();
 
   constructor(private customerAccountsService: CustomerAccountsService,
     private customerAccountHelper: CustomerAccountHeper) { }
@@ -39,6 +41,7 @@ export class CustomerAccountImportComponent implements OnInit {
       this.customerAccountsService.import(jsonResult).subscribe(result => {
         this.successImportCount = result;
         this.showSpinner = false;
+        this.refresh.emit();
       });
     };
 

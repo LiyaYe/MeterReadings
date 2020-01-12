@@ -14,6 +14,14 @@ export class ManageMeterReadingsComponent implements OnInit {
   constructor(private meterReadingsService: MeterReadingsService) { }
 
   ngOnInit() {
+    this.getMeterReadings();
+  }
+
+  public onRefresh(): void {
+    this.getMeterReadings();
+  }
+
+  private getMeterReadings(): void {
     this.meterReadingsService.getAll().subscribe(meterReadings => {
       this.meterReadings = meterReadings;
     });

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, ElementRef } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -11,6 +11,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatTableModule } from '@angular/material/table';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -24,7 +28,6 @@ import { CustomerAccountHeper } from './services/customer-account-helper';
 import { MeterReadingsHelper } from './services/meter-readings-helper';
 import { MeterReadingImportComponent } from './meter-reading-import/meter-reading-import.component';
 import { CustomerAccountImportComponent } from './customer-account-import/customer-account-import.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +37,7 @@ import { CustomerAccountImportComponent } from './customer-account-import/custom
     CustomerAccountsListComponent,
     MeterReadingsListComponent,
     MeterReadingImportComponent,
-    CustomerAccountImportComponent
+    CustomerAccountImportComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -46,6 +49,10 @@ import { CustomerAccountImportComponent } from './customer-account-import/custom
     MatToolbarModule,
     MatSidenavModule,
     MatProgressSpinnerModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatTableModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'manage-meter-readings', component: ManageMeterReadingsComponent },

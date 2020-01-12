@@ -4,4 +4,6 @@
   [meterReadings]="meterReadings">
 </app-meter-readings-list>
 
-<app-meter-reading-import> </app-meter-reading-import>
+<app-meter-reading-import
+  (refresh)="onRefresh()">
+</app-meter-reading-import>

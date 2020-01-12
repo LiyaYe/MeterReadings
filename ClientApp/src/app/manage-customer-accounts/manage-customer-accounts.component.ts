@@ -14,6 +14,14 @@ export class ManageCustomerAccountsComponent implements OnInit {
   constructor(private customerAccountsService: CustomerAccountsService) { }
 
   ngOnInit() {
+    this.getCustomerAccounts();
+  }
+
+  public onRefresh(): void {
+    this.getCustomerAccounts();
+  }
+
+  private getCustomerAccounts(): void {
     this.customerAccountsService.getAll().subscribe(customerAccounts => {
       this.customerAccounts = customerAccounts;
     });

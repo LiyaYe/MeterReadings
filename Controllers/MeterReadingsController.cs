@@ -5,9 +5,10 @@ using Microsoft.EntityFrameworkCore;
 using MeterReadings.Data.Contexts;
 using MeterReadings.Models.Interfaces;
 using System.Collections.Generic;
-using MeterReadings.Models;
 using MeterReadings.Extensions.DbContext;
 using MeterReadings.Data.EntityModels;
+using System;
+using MeterReadings.Models;
 
 namespace MeterReadings.Controllers
 {
@@ -26,9 +27,27 @@ namespace MeterReadings.Controllers
             return View(await _context.MeterReadings.ToListAsync());
         }
 
+        public IMeterReadingStats GetStats(Int32 accountId, DateTime? from, DateTime? to)
+        {
+            var result = _context.MeterReadings
+                .Where(m => m.AccountId == accountId && m.MeterReadDateTime >= from && m.MeterReadDateTime < to)
+                .OrderByDescending(m => m.MeterReadDateTime);
+
+            return new MeterReadingStats {
+                TotalCount = result.Count(),
+                TotalValue = Int32.TryParse(result.FirstOrDefault()?.MeterReadValue, out Int32 Value) ? Value : 0
+            };
+        }
+
         public IEnumerable<IMeterReading> GetAll()
         {
-            return _context.MeterReadings.ToList();
+            return _context.MeterReadings;
+        }
+
+        public IEnumerable<IMeterReading> Search(Int32 accountId, DateTime? from, DateTime? to)
+        {
+            return _context.MeterReadings
+                .Where(m => m.AccountId == accountId && m.MeterReadDateTime >= from && m.MeterReadDateTime < to);
         }
 
         // GET: MeterReadings/Details/5

@@ -1,35 +1,17 @@
-<mat-toolbar>
-  <mat-toolbar-row>
-    <span (click)="toggleMeterReadingsList()">At a glance</span>
-    <mat-icon>expand_more</mat-icon>
-  </mat-toolbar-row>
-</mat-toolbar>
+<mat-table [dataSource]="meterReadings">
+  <ng-container matColumnDef="accountId">
+    <mat-header-cell *matHeaderCellDef> Account Id </mat-header-cell>
+    <mat-cell *matCellDef="let meterReading"> {{ meterReading.accountId }} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="meterReadDateTime">
+    <mat-header-cell *matHeaderCellDef> Time </mat-header-cell>
+    <mat-cell *matCellDef="let meterReading"> {{ meterReading.meterReadDateTime }} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="meterReadValue">
+    <mat-header-cell *matHeaderCellDef> Value </mat-header-cell>
+    <mat-cell *matCellDef="let meterReading"> {{ meterReading.meterReadValue }} </mat-cell>
+  </ng-container>
 
-<table *ngIf="showMeterReadings">
-  <thead>
-    <th> Account Id </th>
-    <th> Time </th>
-    <th> Value </th>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <input/>
-      </td>
-      <td>
-        <input/>
-      </td>
-      <td>
-        <input/>
-      </td>
-      <button mat-button (click)="addMeterReading()">
-        <mat-icon>add</mat-icon>
-      </button>
-    </tr>
-    <tr *ngFor="let meterReading of meterReadings">
-      <td> {{ meterReading.accountId }}</td>
-      <td> {{ meterReading.meterReadDateTime }}</td>
-      <td> {{ meterReading.meterReadValue }}</td>
-    </tr>
-  </tbody>
-</table>
+  <mat-header-row mat-header-row *matHeaderRowDef="columnNames"></mat-header-row>
+  <mat-row mat-row *matRowDef="let row; columns: columnNames;"></mat-row>
+</mat-table>

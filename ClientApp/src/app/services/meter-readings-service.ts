@@ -14,12 +14,12 @@ export class MeterReadingsService {
     return this.http.get<IMeterReading[]>(`${this.baseUrl}/GetAll`);
   }
 
-  public search(accountId: number): Observable<IMeterReading[]> {
-    return this.http.get<IMeterReading[]>(`${this.baseUrl}/Details?accountId${accountId}`);
+  public search(accountId?: number, from?: Date, to?: Date): Observable<IMeterReading[]> {
+    return this.http.get<IMeterReading[]>(`${this.baseUrl}/Search?AccountId${accountId}&From?${from}&To${to}`);
   }
 
-  public import(meterReadings: string): Observable<IMeterReading[]> {
-    return this.http.post<IMeterReading[]>(`${this.baseUrl}/Import`, meterReadings, {
+  public import(meterReadings: string): Observable<number> {
+    return this.http.post <number>(`${this.baseUrl}/Import`, meterReadings, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       })

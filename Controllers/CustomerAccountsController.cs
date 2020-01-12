@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MeterReadings.Data.Contexts;
 using MeterReadings.Models.Interfaces;
-using MeterReadings.Models;
 using MeterReadings.Data.EntityModels;
 using MeterReadings.Extensions.DbContext;
 
@@ -28,7 +27,7 @@ namespace MeterReadings.Controllers
 
         public IEnumerable<ICustomerAccount> GetAll()
         {
-            return _context.CustomerAccounts.ToList();
+            return _context.CustomerAccounts;
         }
 
         // GET: CustomerAccounts/Details/5

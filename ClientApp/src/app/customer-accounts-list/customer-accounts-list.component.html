@@ -1,21 +1,17 @@
-<mat-toolbar>
-    <mat-toolbar-row>
-        <span (click)="toggleCustomerAccountsList()">At a glance</span>
-        <mat-icon>expand_more</mat-icon>
-    </mat-toolbar-row>
-</mat-toolbar>
+<mat-table [dataSource]="customerAccounts">
+    <ng-container matColumnDef="accountId">
+        <mat-header-cell *matHeaderCellDef> Account Id </mat-header-cell>
+        <mat-cell *matCellDef="let customerAccount"> {{ customerAccount.accountId }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="firstName">
+        <mat-header-cell *matHeaderCellDef> First Name </mat-header-cell>
+        <mat-cell *matCellDef="let customerAccount"> {{ customerAccount.firstName }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef> Last Name </mat-header-cell>
+        <mat-cell *matCellDef="let customerAccount"> {{ customerAccount.lastName }} </mat-cell>
+    </ng-container>
 
-<table *ngIf="showCustomerAccounts">
-    <thead>
-        <th> Account Id </th>
-        <th> First Name </th>
-        <th> Last Name </th>
-    </thead>
-    <tbody>
-        <tr *ngFor="let customerAccount of customerAccounts">
-            <td> {{ customerAccount.accountId }}</td>
-            <td> {{ customerAccount.firstName }}</td>
-            <td> {{ customerAccount.lastName }}</td>
-        </tr>
-    </tbody>
-</table>
+    <mat-header-row mat-header-row *matHeaderRowDef="columnNames"></mat-header-row>
+    <mat-row mat-row *matRowDef="let row; columns: columnNames;"></mat-row>
+</mat-table>

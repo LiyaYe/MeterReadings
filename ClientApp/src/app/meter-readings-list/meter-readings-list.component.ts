@@ -10,14 +10,10 @@ export class MeterReadingsListComponent implements OnInit {
 
   @Input() meterReadings: IMeterReading[];
 
-  public showMeterReadings: boolean;
+  public columnNames: string[] = ['accountId', 'meterReadDateTime', 'meterReadValue'];
 
   constructor() { }
 
   ngOnInit() {
-  }
-
-  public toggleMeterReadingsList(): void {
-    this.showMeterReadings = !this.showMeterReadings;
   }
 }

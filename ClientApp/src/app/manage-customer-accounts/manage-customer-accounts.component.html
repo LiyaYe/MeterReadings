@@ -4,4 +4,6 @@
   [customerAccounts]="customerAccounts">
 </app-customer-accounts-list>
 
-<app-customer-account-import></app-customer-account-import>
+<app-customer-account-import
+  (refresh)="onRefresh()">
+</app-customer-account-import>
