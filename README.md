@@ -9,7 +9,8 @@
 * Angular Material Design
 ## How to run
 Execute the following instructions on Visual Studio Code Terminal:
-```cd ClientApp
+```
+cd ClientApp
 npm install
 cd ..
 dotnet build
