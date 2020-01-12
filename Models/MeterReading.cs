@@ -18,5 +18,7 @@ namespace MeterReadings.Models
         [Required(ErrorMessage = "Please provide a MeterReadValue")]
         [Display(Name = "meterReadValue")]
         public UInt32 MeterReadValue { get; set; }
+        [JsonIgnore]
+        public ICustomerAccount CustomerAccount { get; set; }
     }
 }

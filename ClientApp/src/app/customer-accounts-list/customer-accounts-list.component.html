@@ -1,5 +1,11 @@
+<mat-toolbar>
+    <mat-toolbar-row>
+        <span (click)="toggleCustomerAccountsList()">At a glance</span>
+        <mat-icon>expand_more</mat-icon>
+    </mat-toolbar-row>
+</mat-toolbar>
 
-<table>
+<table *ngIf="showCustomerAccounts">
     <thead>
         <th> Account Id </th>
         <th> First Name </th>

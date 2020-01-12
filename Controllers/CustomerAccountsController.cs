@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using MeterReadings.Data.Contexts;
 using MeterReadings.Models.Interfaces;
 using MeterReadings.Models;
+using MeterReadings.Data.EntityModels;
 
 namespace MeterReadings.Controllers
 {
@@ -21,12 +22,12 @@ namespace MeterReadings.Controllers
         // GET: CustomerAccounts
         public async Task<IActionResult> Index()
         {
-            return View(await _context.CustomerAccount.ToListAsync());
+            return View(await _context.CustomerAccounts.ToListAsync());
         }
 
         public IEnumerable<ICustomerAccount> GetAll()
         {
-            return _context.CustomerAccount.ToList();
+            return _context.CustomerAccounts.ToList();
         }
 
         // GET: CustomerAccounts/Details/5
@@ -37,7 +38,7 @@ namespace MeterReadings.Controllers
                 return NotFound();
             }
 
-            var customerAccount = await _context.CustomerAccount
+            var customerAccount = await _context.CustomerAccounts
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (customerAccount == null)
             {
@@ -65,7 +66,7 @@ namespace MeterReadings.Controllers
 
         // Creates several Customer Account Entries
         [HttpPost]
-        public int Import([FromBody] CustomerAccount[] customerAccounts)
+        public int Import([FromBody] CustomerAccountEntity[] customerAccounts)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +89,7 @@ namespace MeterReadings.Controllers
                 return NotFound();
             }
 
-            var customerAccount = await _context.CustomerAccount.FindAsync(id);
+            var customerAccount = await _context.CustomerAccounts.FindAsync(id);
             if (customerAccount == null)
             {
                 return NotFound();
@@ -139,7 +140,7 @@ namespace MeterReadings.Controllers
                 return NotFound();
             }
 
-            var customerAccount = await _context.CustomerAccount
+            var customerAccount = await _context.CustomerAccounts
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (customerAccount == null)
             {
@@ -154,15 +155,15 @@ namespace MeterReadings.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var customerAccount = await _context.CustomerAccount.FindAsync(id);
-            _context.CustomerAccount.Remove(customerAccount);
+            var customerAccount = await _context.CustomerAccounts.FindAsync(id);
+            _context.CustomerAccounts.Remove(customerAccount);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CustomerAccountExists(int id)
         {
-            return _context.CustomerAccount.Any(e => e.Id == id);
+            return _context.CustomerAccounts.Any(e => e.Id == id);
         }
     }
 }

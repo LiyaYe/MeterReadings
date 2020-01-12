@@ -21,12 +21,12 @@ namespace MeterReadings.Controllers
         // GET: MeterReadings
         public async Task<IActionResult> Index()
         {
-            return View(await _context.MeterReading.ToListAsync());
+            return View(await _context.MeterReadings.ToListAsync());
         }
 
         public IEnumerable<IMeterReading> GetAll()
         {
-            return  _context.MeterReading.ToList();
+            return _context.MeterReadings.ToList();
         }
 
         // GET: MeterReadings/Details/5
@@ -37,7 +37,7 @@ namespace MeterReadings.Controllers
                 return NotFound();
             }
 
-            var meterReading = await _context.MeterReading
+            var meterReading = await _context.MeterReadings
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (meterReading == null)
             {
@@ -94,7 +94,7 @@ namespace MeterReadings.Controllers
                 return NotFound();
             }
 
-            var meterReading = await _context.MeterReading.FindAsync(id);
+            var meterReading = await _context.MeterReadings.FindAsync(id);
             if (meterReading == null)
             {
                 return NotFound();
@@ -145,7 +145,7 @@ namespace MeterReadings.Controllers
                 return NotFound();
             }
 
-            var meterReading = await _context.MeterReading
+            var meterReading = await _context.MeterReadings
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (meterReading == null)
             {
@@ -160,15 +160,15 @@ namespace MeterReadings.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var meterReading = await _context.MeterReading.FindAsync(id);
-            _context.MeterReading.Remove(meterReading);
+            var meterReading = await _context.MeterReadings.FindAsync(id);
+            _context.MeterReadings.Remove(meterReading);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool MeterReadingExists(int id)
         {
-            return _context.MeterReading.Any(e => e.Id == id);
+            return _context.MeterReadings.Any(e => e.Id == id);
         }
     }
 }

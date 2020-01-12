@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MeterReadingComponent } from './meter-reading.component';
+import { MeterReadingImportComponent } from './meter-reading-import.component';
 
-describe('MeterReadingComponent', () => {
-  let component: MeterReadingComponent;
-  let fixture: ComponentFixture<MeterReadingComponent>;
+describe('MeterReadingImportComponent', () => {
+  let component: MeterReadingImportComponent;
+  let fixture: ComponentFixture<MeterReadingImportComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MeterReadingComponent ]
+      declarations: [ MeterReadingImportComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MeterReadingComponent);
+    fixture = TestBed.createComponent(MeterReadingImportComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

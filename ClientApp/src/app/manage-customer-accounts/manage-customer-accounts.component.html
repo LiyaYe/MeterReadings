@@ -1,10 +1,7 @@
 <h1> Customer Accounts Manager </h1>
 
-<div class="accountImporter">
-  <input type="file" file-browser (change)="setCustomerAccountsFile($event.target.files)">
-  <button (click)="importCsv()">Import</button>
-</div>
-
 <app-customer-accounts-list
   [customerAccounts]="customerAccounts">
 </app-customer-accounts-list>
+
+<app-customer-account-import></app-customer-account-import>

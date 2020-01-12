@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using MeterReadings.Models.Interfaces;
@@ -18,5 +19,7 @@ namespace MeterReadings.Models
         [Required(ErrorMessage = "Please provide a LastName")]
         [Display(Name = "lastName")]
         public string LastName { get; set; }
+        [JsonIgnore]
+        public IEnumerable<IMeterReading> MeterReadings { get; set; }
     }
 }

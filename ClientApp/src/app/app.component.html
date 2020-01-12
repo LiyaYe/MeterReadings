@@ -1,6 +1,18 @@
 <body>
-  <app-nav-menu></app-nav-menu>
-  <div class="container">
-    <router-outlet></router-outlet>
-  </div>
+  <button class="menu-button" (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <ng-container>
+    <mat-sidenav-container class="sidenav-container">
+      <mat-sidenav #sidenav mode="side" opened class="sidenav" [fixedInViewport]="false">
+        <a [routerLink]="['/']" mat-menu-item>Home</a>
+        <a [routerLink]="['/manage-customer-accounts']" mat-menu-item>Customer Accounts</a>
+        <a [routerLink]="['/manage-meter-readings']" mat-menu-item>Meter Readings</a>
+      </mat-sidenav>
+      <mat-sidenav-content class="container">
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </ng-container>
 </body>

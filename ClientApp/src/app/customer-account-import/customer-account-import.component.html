@@ -1,0 +1,9 @@
+<mat-toolbar>
+    <mat-toolbar-row>
+        <div>
+            <span>Bulk import: </span>
+            <input type="file" file-browser (change)="setCustomerAccountsFile($event.target.files)">
+            <button mat-button (click)="importCsv()">IMPORT</button>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
